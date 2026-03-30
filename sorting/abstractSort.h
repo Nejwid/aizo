@@ -1,6 +1,7 @@
 #pragma once
 #include <algorithm>
 #include <iostream>
+using namespace::std;
 
 // Abstrakcyjna klasa bazowa dla algorytmów sortowania - -techniki programowania obiektowego
 
@@ -25,11 +26,21 @@ public:
 
     virtual void Sort() = 0;
 
-    // Wyœwietlanie tablicy korzystaj¹ce z pól klasy
-    void print_array() {
-        for (int i = 0; i < size; ++i) {
-            std::cout << array[i] << " ";
-        }
-        std::cout << std::endl;
-    }
+	void print_array() {
+		bool isCorrect = true;
+		if (this->size > 0) {
+			cout << array[0] << " ";
+		}
+		if (this->size > 1) {
+			T prev = array[0]; // Zmiana int na T dla spójnoœci typu
+			for (int i = 1; i < size; ++i) {
+				if (array[i] < prev) {
+					isCorrect = false;
+				}
+				cout << array[i] << " ";
+				prev = array[i];
+			}
+		}
+		cout << "\nczy tablica jest posortowana? 1 tak, 0 nie: " << isCorrect << endl;
+	}
 };

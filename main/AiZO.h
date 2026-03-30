@@ -18,6 +18,8 @@ private:
 	T* array;          // tablica
 	int size;          // rozmiar tablicy
 
+	chrono::milliseconds sortingTime;
+
 	void generate_array() {
 		cout << "Podaj dlugosc tablicy: ";
 		cin >> size;
@@ -25,7 +27,7 @@ private:
 		array = new T[size];
 
 		for (int i = 0; i < size; ++i) {
-			array[i] = static_cast<T>(rand() % 100); // losowanie liczb
+			array[i] = static_cast<T>(rand() % 100000); // losowanie liczb
 		}
 	}
 
@@ -36,9 +38,8 @@ private:
 		f();
 		auto end = chrono::high_resolution_clock::now();
 
-		chrono::duration<double> duration = end - start;
-
-		cout << "Czas wykonania: " << duration.count() << " s\n";
+		// zmiana jednostki na milisekundy za pomoca std::milli
+		sortingTime = chrono::duration_cast<chrono::milliseconds>(end - start);;
 	}
 
 	void run_sort(int wybor) {
@@ -134,5 +135,7 @@ public:
 		}
 
 		sorter->print_array();
+
+		cout << "Czas wykonania: " << sortingTime.count() << " ms\n";
 	}
 };
