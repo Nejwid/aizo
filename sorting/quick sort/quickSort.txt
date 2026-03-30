@@ -1,0 +1,35 @@
+
+
+using namespace std;
+
+template <typename T>
+QuickSort<T>::QuickSort(T arr[], int s) {
+    this->array = arr;
+    this->size = s;
+}
+
+template <typename T>
+bool QuickSort<T>::Sort(T arr[], int left, int right) {
+    int i = left;
+    int j = right;
+    T pivot = arr[(left + right) / 2]; // Pivot uogólnionego typu
+
+    while (i <= j) {
+        while (arr[i] < pivot) i++;
+        while (arr[j] > pivot) j--;
+
+        if (i <= j) {
+            swap(arr[i], arr[j]);
+            i++;
+            j--;
+        }
+    }
+
+    if (left < j)
+        Sort(arr, left, j);
+
+    if (i < right)
+        Sort(arr, i, right);
+
+    return true;
+}

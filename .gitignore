@@ -1,0 +1,23 @@
+# Pliki tymczasowe Visual Studio
+.vs/
+*.user
+*.suo
+*.db
+
+# Pliki i foldery generowane przez CMake
+build/
+out/
+CMakeCache.txt
+CMakeFiles/
+Makefile
+*.cmake
+cmake_install.cmake
+
+# Skompilowane pliki binarne i obiekty
+*.exe
+*.dll
+*.so
+*.a
+*.lib
+*.o
+*.obj

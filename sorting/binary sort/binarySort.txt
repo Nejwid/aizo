@@ -1,0 +1,39 @@
+
+
+using namespace std;
+
+template <typename T>
+BinarySort<T>::BinarySort(T arr[], int s) {
+    this->array = arr;
+    this->size = s;
+}
+
+template <typename T>
+bool BinarySort<T>::Sort(T arr[], int n) {
+    int i, j, ip, ik;
+    T x; // Zmienna uogólnionego typu
+
+    // Przechodzenie tablicy od przedostatniego elementu
+    for (j = n - 2; j >= 0; j--) {
+        x = arr[j];
+        ip = j;
+        ik = n;
+
+        // Binarne szukanie miejsca wstawienia
+        while (ik - ip > 1) {
+            i = (ip + ik) / 2;
+            if (x <= arr[i]) ik = i;
+            else ip = i;
+        }
+
+        // Przesuwanie elementów w lewo
+        for (i = j; i < ip; i++) {
+            arr[i] = arr[i + 1];
+        }
+
+        // Wstawienie elementu na w³aœciwe miejsce
+        arr[ip] = x;
+    }
+
+    return true;
+}
